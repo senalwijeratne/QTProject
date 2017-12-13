@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>300</width>
-    <height>441</height>
+    <height>440</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>241</width>
+     <width>261</width>
      <height>25</height>
     </rect>
    </property>
@@ -44,7 +44,7 @@
   <widget class="QPushButton" name="searchButton">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>270</x>
      <y>10</y>
      <width>25</width>
      <height>25</height>
@@ -52,19 +52,6 @@
    </property>
    <property name="text">
     <string>S</string>
-   </property>
-  </widget>
-  <widget class="QToolButton" name="toolButton">
-   <property name="geometry">
-    <rect>
-     <x>274</x>
-     <y>10</y>
-     <width>21</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>...</string>
    </property>
   </widget>
   <widget class="QLCDNumber" name="lcdNumber">

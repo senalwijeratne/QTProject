@@ -1,17 +1,22 @@
 #include "weatherapp.h"
 #include "ui_weatherapp.h"
-#include <QDebug>
-#include <QGraphicsScene>
-#include <QGraphicsView>
-#include <QGraphicsPixmapItem>
-#include <QPixmap>
-#include <QCompleter>
+#include "display.h"
 
 WeatherApp::WeatherApp(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::WeatherApp)
 {
+//    Display *dis = new Display();
+//    dis->setBG();
+    setBG();
+    ui->setupUi(this);
+}
 
+WeatherApp::~WeatherApp(){
+    delete ui;
+}
+
+void WeatherApp::setBG(){
     QGraphicsView * view = new QGraphicsView(this);
     QGraphicsScene * scene = new QGraphicsScene();
     QGraphicsPixmapItem * item = new QGraphicsPixmapItem();
@@ -21,23 +26,27 @@ WeatherApp::WeatherApp(QWidget *parent) :
     item->setPos(0,0);
     scene->addItem(item);
     view->show();
+    qDebug()<<"BG happened in weatherapp.cpp";
+}
 
-    ui->setupUi(this);
-
+void WeatherApp::setAutoComp(){
     QStringList wordList;
     wordList << "alpha" << "omega" << "omicron" << "zeta";
-
     QCompleter *locationCompleter = new QCompleter(wordList, this);
     locationCompleter->setCaseSensitivity(Qt::CaseInsensitive);
-
     ui->locationEdit->setCompleter(locationCompleter);
 }
 
-WeatherApp::~WeatherApp()
+void WeatherApp::on_searchButton_clicked()
 {
-    delete ui;
-}
 
-void setBG(){
+    QNetworkAccessManager networkManager;
+
+    QUrl url("http://api.openweathermap.org/data/2.5/weather?q=colombo&units=metric&appid=6a0c25eeca3831360143ec4edb858aad");
+    QNetworkRequest request;
+    request.setUrl(url);
+
+//    QNetworkReply *currentReply = networkManager.get(request);  // GET
+
 
 }

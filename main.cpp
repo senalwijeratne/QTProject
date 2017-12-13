@@ -1,11 +1,13 @@
 #include "weatherapp.h"
 #include <QApplication>
 
+WeatherApp *MainScreen;
+
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    WeatherApp w;
-    w.show();
+    QApplication prog(argc, argv);
+    MainScreen = new WeatherApp();
+    MainScreen->show();
 
-    return a.exec();
+    return prog.exec();
 }
