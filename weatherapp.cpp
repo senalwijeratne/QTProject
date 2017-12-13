@@ -10,6 +10,8 @@ WeatherApp::WeatherApp(QWidget *parent) :
 //    dis->setBG();
     setBG();
     ui->setupUi(this);
+    setAutoComp();
+    connect(&theDon,SIGNAL(dataReadyRead(QByteArray)),this,SLOT(dataInDaHouse(QByteArray data)));
 }
 
 WeatherApp::~WeatherApp(){
@@ -49,4 +51,16 @@ void WeatherApp::on_searchButton_clicked()
 //    QNetworkReply *currentReply = networkManager.get(request);  // GET
 
 
+}
+
+void WeatherApp::dataInDaHouse(QByteArray data)
+{
+    QString dataString;
+    dataString = data;
+    ui->statLabel->setText(dataString);
+}
+
+void WeatherApp::on_pushButton_clicked()
+{
+    theDon.makeRequest("http://api.openweathermap.org/data/2.5/weather?q=colombo&units=metric&appid=6a0c25eeca3831360143ec4edb858aad");
 }

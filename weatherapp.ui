@@ -82,10 +82,10 @@
   <widget class="QLabel" name="statLabel">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>410</y>
-     <width>71</width>
-     <height>21</height>
+     <x>20</x>
+     <y>50</y>
+     <width>131</width>
+     <height>251</height>
     </rect>
    </property>
    <property name="font">
@@ -95,6 +95,19 @@
    </property>
    <property name="text">
     <string>Sunny?</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>360</y>
+     <width>80</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>test API</string>
    </property>
   </widget>
  </widget>

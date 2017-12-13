@@ -13,6 +13,7 @@
 #include <QUrl>
 #include <QDebug>
 #include "display.h"
+#include "apihandle.h"
 
 namespace Ui {
 class WeatherApp;
@@ -31,9 +32,12 @@ public:
 
 private slots:
     void on_searchButton_clicked();
+    void dataInDaHouse(QByteArray data);
+    void on_pushButton_clicked();
 
 private:
     Ui::WeatherApp *ui;
+    ApiHandle theDon;
 };
 
 #endif // WEATHERAPP_H
