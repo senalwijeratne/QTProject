@@ -33,7 +33,6 @@ public:
 private slots:
     void on_searchButton_clicked();
     void dataInDaHouse(QByteArray data);
-    void on_pushButton_clicked();
 
 private:
     Ui::WeatherApp *ui;
