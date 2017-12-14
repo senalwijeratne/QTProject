@@ -1,13 +1,10 @@
 #include "weatherapp.h"
 #include "ui_weatherapp.h"
-#include "display.h"
 
 WeatherApp::WeatherApp(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::WeatherApp)
 {
-//    Display *dis = new Display();
-//    dis->setBG();
     setBG();
     ui->setupUi(this);
     setAutoComp();
@@ -44,7 +41,6 @@ void WeatherApp::on_searchButton_clicked()
 
     theDon.makeRequest("http://api.openweathermap.org/data/2.5/weather?q=colombo&units=metric&appid=6a0c25eeca3831360143ec4edb858aad");
 
-
 }
 
 void WeatherApp::dataInDaHouse(QByteArray data)
@@ -52,4 +48,5 @@ void WeatherApp::dataInDaHouse(QByteArray data)
     QString dataString;
     dataString = data;
     ui->statLabel->setText(dataString);
+    qDebug()<<"is it tho?";
 }

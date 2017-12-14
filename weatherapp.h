@@ -12,7 +12,6 @@
 #include <QPixmap>
 #include <QUrl>
 #include <QDebug>
-#include "display.h"
 #include "apihandle.h"
 
 namespace Ui {
@@ -28,7 +27,6 @@ public:
     ~WeatherApp();
     void setBG();
     void setAutoComp();
-    Display *dis;
 
 private slots:
     void on_searchButton_clicked();

@@ -15,14 +15,23 @@ void ApiHandle::makeRequest(QString endPointRequest)
 
 void ApiHandle::dataRead(QNetworkReply *reply)
 {
-    QByteArray myData;
-    myData = reply->readAll();
-    qDebug()<<myData;
-
+    //gets the api QByteArray response
+    QByteArray myData = reply->readAll();
+    //converts and saves the QByteArray as a QJsonDocument
     QJsonDocument dataDoc = QJsonDocument::fromJson(myData);
-    qDebug()<<"this is it!";
+    //converts and saves the QJsonDoc as a QJsonObject
     QJsonObject itemObject = dataDoc.object();
-    qDebug()<<itemObject;
+
+    QJsonValue response = itemObject.value("coord");
+    qDebug()<<"";
+    qDebug()<<response;
+    QJsonObject coordObject = response.toObject();
+    qDebug()<<coordObject;
+
+    QJsonValue lat = coordObject.value("lat");
+    qDebug()<<lat;
+    qreal l = lat.toDouble();
+    qDebug()<<l;
 
     emit(dataReadyRead(myData));
 }
