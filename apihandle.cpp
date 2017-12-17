@@ -22,16 +22,63 @@ void ApiHandle::dataRead(QNetworkReply *reply)
     //converts and saves the QJsonDoc as a QJsonObject
     QJsonObject itemObject = dataDoc.object();
 
-    QJsonValue response = itemObject.value("coord");
+    //separating coordinates from the JSON Object
+    qreal lat = ((itemObject.value("coord").toObject())
+                .value("lat"))
+                    .toDouble();
+    qreal lon = ((itemObject.value("coord").toObject())
+                .value("lon"))
+                    .toDouble();
     qDebug()<<"";
-    qDebug()<<response;
-    QJsonObject coordObject = response.toObject();
-    qDebug()<<coordObject;
+    qDebug()<<"Longitude:"<<lon<<", Latitude:"<<lat;
 
-    QJsonValue lat = coordObject.value("lat");
-    qDebug()<<lat;
-    qreal l = lat.toDouble();
-    qDebug()<<l;
+    //separating main info from the JSON Object
+    qint32 temp = ((itemObject.value("main").toObject())
+                .value("temp"))
+                    .toInt();
+    qint32 pres = ((itemObject.value("main").toObject())
+                .value("pressure"))
+                    .toInt();
+    qint32 humi = ((itemObject.value("main").toObject())
+                .value("humidity"))
+                    .toInt();
+    qint32 temp_max = ((itemObject.value("main").toObject())
+                .value("temp_max"))
+                    .toInt();
+    qint32 temp_min = ((itemObject.value("main").toObject())
+                .value("temp_min"))
+                    .toInt();
+    qDebug()<<"Temperature:"<<temp<<", Pressure"<<pres<<", humidity:"<<humi<<", Max Temperature"<<temp_max<<", Min Tempreature"<<temp_min;
+
+    //separating wind from the JSON Object
+    qreal speed = ((itemObject.value("wind").toObject())
+                .value("speed"))
+                    .toDouble();
+    qreal deg = ((itemObject.value("wind").toObject())
+                .value("deg"))
+                    .toDouble();
+    qDebug()<<"Speed:"<<speed<<", Direction:"<<deg;
+
+    //separating sys from the JSON Object
+    qint32 type = ((itemObject.value("sys").toObject())
+                .value("type"))
+                    .toInt();
+    qint32 id = ((itemObject.value("sys").toObject())
+                .value("id"))
+                    .toInt();
+    qreal message = ((itemObject.value("sys").toObject())
+                .value("message"))
+                    .toDouble();
+    QString country = ((itemObject.value("sys").toObject())
+                .value("country"))
+                    .toString();
+    qint32 sunrise = ((itemObject.value("sys").toObject())
+                .value("sunrise"))
+                    .toInt();
+    qint32 sunset = ((itemObject.value("sys").toObject())
+                .value("sunset"))
+                    .toInt();
+    qDebug()<<"Type:"<<type<<", ID"<<id<<", Message:"<<message<<", Country"<<country<<", Sunrise"<<sunrise<<", Sunset"<<sunset;
 
     emit(dataReadyRead(myData));
 }
