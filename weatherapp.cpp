@@ -7,7 +7,7 @@ WeatherApp::WeatherApp(QWidget *parent) :
 {
     setBG();
     ui->setupUi(this);
-    setAutoComp();
+//    setAutoComp();
     connect(&api,SIGNAL(dataReadyRead(QByteArray)),this,SLOT(dataInDaHouse(QByteArray data)));
 }
 
@@ -28,25 +28,29 @@ void WeatherApp::setBG(){
     qDebug()<<"BG happened in weatherapp.cpp";
 }
 
-void WeatherApp::setAutoComp(){
-    QStringList wordList;
-    wordList << "alpha" << "omega" << "omicron" << "zeta";
-    QCompleter *locationCompleter = new QCompleter(wordList, this);
-    locationCompleter->setCaseSensitivity(Qt::CaseInsensitive);
-    ui->locationEdit->setCompleter(locationCompleter);
-}
+//void WeatherApp::setAutoComp(){
+//    QStringList wordList;
+//    wordList << "alpha" << "omega" << "omicron" << "zeta";
+//    QCompleter *locationCompleter = new QCompleter(wordList, this);
+//    locationCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+//    ui->locationEdit->setCompleter(locationCompleter);
+//}
 
 void WeatherApp::on_searchButton_clicked()
 {
 
     api.makeRequest("http://api.openweathermap.org/data/2.5/weather?q=colombo&units=metric&appid=6a0c25eeca3831360143ec4edb858aad");
-
 }
 
 void WeatherApp::dataInDaHouse(QByteArray data)
 {
     QString dataString;
     dataString = data;
-    ui->statLabel->setText(dataString);
-    qDebug()<<"is it tho?";
+    qDebug()<<"is it tho?"<<dataString;
+}
+
+void WeatherApp::setWeatherValues(qint32 temp){
+    qDebug()<<"This is printing from the right place"<<temp;
+    ui->tempLabel->setText(QString::number(temp));
+    qDebug()<<ui->tempLabel->text();
 }

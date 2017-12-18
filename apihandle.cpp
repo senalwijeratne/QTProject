@@ -3,6 +3,9 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include "weatherapp.h"
+
+extern WeatherApp *weatherapp;
 
 ApiHandle::ApiHandle(QObject *parent) : QObject(parent)
 {
@@ -93,6 +96,9 @@ void ApiHandle::dataRead(QNetworkReply *reply)
 
         qDebug()<<"ID:"<<id<<", Main:"<<main<<", Description"<<des<<", Icon:"<<icon;
     }
+
+    WeatherApp *weatherapp = new WeatherApp;
+    weatherapp->setWeatherValues(temp);
 
 
     emit(dataReadyRead(myData));

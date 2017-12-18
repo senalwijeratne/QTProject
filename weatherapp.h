@@ -27,10 +27,11 @@ public:
     ~WeatherApp();
     void setBG();
     void setAutoComp();
+    void dataInDaHouse(QByteArray data);
+    void setWeatherValues(qint32 lon);
 
 private slots:
     void on_searchButton_clicked();
-    void dataInDaHouse(QByteArray data);
 
 private:
     Ui::WeatherApp *ui;
