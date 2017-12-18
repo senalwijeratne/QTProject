@@ -8,7 +8,7 @@ WeatherApp::WeatherApp(QWidget *parent) :
     setBG();
     ui->setupUi(this);
     setAutoComp();
-    connect(&theDon,SIGNAL(dataReadyRead(QByteArray)),this,SLOT(dataInDaHouse(QByteArray data)));
+    connect(&api,SIGNAL(dataReadyRead(QByteArray)),this,SLOT(dataInDaHouse(QByteArray data)));
 }
 
 WeatherApp::~WeatherApp(){
@@ -39,7 +39,7 @@ void WeatherApp::setAutoComp(){
 void WeatherApp::on_searchButton_clicked()
 {
 
-    theDon.makeRequest("http://api.openweathermap.org/data/2.5/weather?q=colombo&units=metric&appid=6a0c25eeca3831360143ec4edb858aad");
+    api.makeRequest("http://api.openweathermap.org/data/2.5/weather?q=colombo&units=metric&appid=6a0c25eeca3831360143ec4edb858aad");
 
 }
 

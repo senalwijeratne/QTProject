@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 
 ApiHandle::ApiHandle(QObject *parent) : QObject(parent)
 {
@@ -79,6 +80,20 @@ void ApiHandle::dataRead(QNetworkReply *reply)
                 .value("sunset"))
                     .toInt();
     qDebug()<<"Type:"<<type<<", ID"<<id<<", Message:"<<message<<", Country"<<country<<", Sunrise"<<sunrise<<", Sunset"<<sunset;
+
+    //separating weather from the JSON Object
+    QJsonArray weather = (itemObject.value("weather").toArray());
+    foreach (const QJsonValue &value, weather) {
+        QJsonObject temp = value.toObject();
+
+        qint32 id = (temp.value("id")).toInt();
+        QString main = (temp.value("main")).toString();
+        QString des = (temp.value("description")).toString();
+        QString icon = (temp.value("icon")).toString();
+
+        qDebug()<<"ID:"<<id<<", Main:"<<main<<", Description"<<des<<", Icon:"<<icon;
+    }
+
 
     emit(dataReadyRead(myData));
 }

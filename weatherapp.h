@@ -34,7 +34,7 @@ private slots:
 
 private:
     Ui::WeatherApp *ui;
-    ApiHandle theDon;
+    ApiHandle api;
 };
 
 #endif // WEATHERAPP_H
