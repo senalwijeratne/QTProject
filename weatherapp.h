@@ -28,7 +28,7 @@ public:
     void setBG();
     void setAutoComp();
     void dataInDaHouse(QByteArray data);
-    void setWeatherValues(qint32 lon);
+    void setWeatherValues(qreal lon, qreal lat, qint32 weather_id, QString main, QString des, QString icon, qint32 temp, qint32 pres, qint32 humi, qint32 temp_max, qint32 temp_min, qreal speed, qreal deg, qint32 type, qint32 sys_id, qreal message, QString country, qint32 sunrise, qint32 sunset);
 
 private slots:
     void on_searchButton_clicked();

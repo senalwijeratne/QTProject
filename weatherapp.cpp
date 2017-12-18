@@ -38,8 +38,8 @@ void WeatherApp::setBG(){
 
 void WeatherApp::on_searchButton_clicked()
 {
-
-    api.makeRequest("http://api.openweathermap.org/data/2.5/weather?q=colombo&units=metric&appid=6a0c25eeca3831360143ec4edb858aad");
+    QString city = ui->locationEdit->text();
+    api.makeRequest("http://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric&appid=6a0c25eeca3831360143ec4edb858aad");
 }
 
 void WeatherApp::dataInDaHouse(QByteArray data)
@@ -49,8 +49,19 @@ void WeatherApp::dataInDaHouse(QByteArray data)
     qDebug()<<"is it tho?"<<dataString;
 }
 
-void WeatherApp::setWeatherValues(qint32 temp){
-    qDebug()<<"This is printing from the right place"<<temp;
+void WeatherApp::setWeatherValues(qreal lon, qreal lat,
+                                  qint32 weather_id, QString main, QString des, QString icon,
+                                  qint32 temp, qint32 pres, qint32 humi, qint32 temp_max, qint32 temp_min,
+                                  qreal speed, qreal deg,
+                                  qint32 type, qint32 sys_id, qreal message, QString country, qint32 sunrise, qint32 sunset)
+{
     ui->tempLabel->setText(QString::number(temp));
-    qDebug()<<ui->tempLabel->text();
+
+    qDebug()<<"";
+    qDebug()<<"";
+    qDebug()<<"Longitude:"<<lon<<", Latitude:"<<lat;
+    qDebug()<<"ID:"<<weather_id<<", Main:"<<main<<", Description"<<des<<", Icon:"<<icon;
+    qDebug()<<"Temperature:"<<temp<<", Pressure"<<pres<<", humidity:"<<humi<<", Max Temperature"<<temp_max<<", Min Tempreature"<<temp_min;
+    qDebug()<<"Speed:"<<speed<<", Direction:"<<deg;
+    qDebug()<<"Type:"<<type<<", ID"<<sys_id<<", Message:"<<message<<", Country"<<country<<", Sunrise"<<sunrise<<", Sunset"<<sunset;
 }

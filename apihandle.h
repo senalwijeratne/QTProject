@@ -22,6 +22,10 @@ public slots:
 
 private:
     QNetworkAccessManager *NetManager = new QNetworkAccessManager(this);
+    qint32 weather_id;
+    QString main;
+    QString des;
+    QString icon;
 
 };
 

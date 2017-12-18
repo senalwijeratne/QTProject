@@ -36,6 +36,19 @@ void ApiHandle::dataRead(QNetworkReply *reply)
     qDebug()<<"";
     qDebug()<<"Longitude:"<<lon<<", Latitude:"<<lat;
 
+    //separating weather from the JSON Object
+    QJsonArray weather = (itemObject.value("weather").toArray());
+    foreach (const QJsonValue &value, weather) {
+        QJsonObject temp = value.toObject();
+
+        weather_id = (temp.value("id")).toInt();
+        main = (temp.value("main")).toString();
+        des = (temp.value("description")).toString();
+        icon = (temp.value("icon")).toString();
+
+        qDebug()<<"ID:"<<weather_id<<", Main:"<<main<<", Description"<<des<<", Icon:"<<icon;
+    }
+
     //separating main info from the JSON Object
     qint32 temp = ((itemObject.value("main").toObject())
                 .value("temp"))
@@ -67,7 +80,7 @@ void ApiHandle::dataRead(QNetworkReply *reply)
     qint32 type = ((itemObject.value("sys").toObject())
                 .value("type"))
                     .toInt();
-    qint32 id = ((itemObject.value("sys").toObject())
+    qint32 sys_id = ((itemObject.value("sys").toObject())
                 .value("id"))
                     .toInt();
     qreal message = ((itemObject.value("sys").toObject())
@@ -82,23 +95,10 @@ void ApiHandle::dataRead(QNetworkReply *reply)
     qint32 sunset = ((itemObject.value("sys").toObject())
                 .value("sunset"))
                     .toInt();
-    qDebug()<<"Type:"<<type<<", ID"<<id<<", Message:"<<message<<", Country"<<country<<", Sunrise"<<sunrise<<", Sunset"<<sunset;
-
-    //separating weather from the JSON Object
-    QJsonArray weather = (itemObject.value("weather").toArray());
-    foreach (const QJsonValue &value, weather) {
-        QJsonObject temp = value.toObject();
-
-        qint32 id = (temp.value("id")).toInt();
-        QString main = (temp.value("main")).toString();
-        QString des = (temp.value("description")).toString();
-        QString icon = (temp.value("icon")).toString();
-
-        qDebug()<<"ID:"<<id<<", Main:"<<main<<", Description"<<des<<", Icon:"<<icon;
-    }
+    qDebug()<<"Type:"<<type<<", ID"<<sys_id<<", Message:"<<message<<", Country"<<country<<", Sunrise"<<sunrise<<", Sunset"<<sunset;
 
 
-    mainScreen->setWeatherValues(temp);
+    mainScreen->setWeatherValues(lon, lat, weather_id, main, des, icon, temp, pres, humi, temp_max, temp_min, speed, deg, type, sys_id, message, country, sunrise, sunset);
 
 
     emit(dataReadyRead(myData));
