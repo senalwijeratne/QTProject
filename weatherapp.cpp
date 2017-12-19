@@ -51,17 +51,11 @@ void WeatherApp::dataInDaHouse(QByteArray data)
 
 void WeatherApp::setWeatherValues(qreal lon, qreal lat,
                                   qint32 weather_id, QString main, QString des, QString icon,
-                                  qint32 temp, qint32 pres, qint32 humi, qint32 temp_max, qint32 temp_min,
+                                  qreal temp, qreal pres, qreal humi, qreal temp_max, qreal temp_min,
                                   qreal speed, qreal deg,
                                   qint32 type, qint32 sys_id, qreal message, QString country, qint32 sunrise, qint32 sunset)
 {
     ui->tempLabel->setText(QString::number(temp));
-
-    qDebug()<<"";
-    qDebug()<<"";
-    qDebug()<<"Longitude:"<<lon<<", Latitude:"<<lat;
-    qDebug()<<"ID:"<<weather_id<<", Main:"<<main<<", Description"<<des<<", Icon:"<<icon;
-    qDebug()<<"Temperature:"<<temp<<", Pressure"<<pres<<", humidity:"<<humi<<", Max Temperature"<<temp_max<<", Min Tempreature"<<temp_min;
-    qDebug()<<"Speed:"<<speed<<", Direction:"<<deg;
-    qDebug()<<"Type:"<<type<<", ID"<<sys_id<<", Message:"<<message<<", Country"<<country<<", Sunrise"<<sunrise<<", Sunset"<<sunset;
+    ui->maxTempLabel->setText("max: "+QString::number(temp_max));
+    ui->minTempLabel->setText("min: "+QString::number(temp_min));
 }

@@ -50,21 +50,21 @@ void ApiHandle::dataRead(QNetworkReply *reply)
     }
 
     //separating main info from the JSON Object
-    qint32 temp = ((itemObject.value("main").toObject())
+    qreal temp = ((itemObject.value("main").toObject())
                 .value("temp"))
-                    .toInt();
-    qint32 pres = ((itemObject.value("main").toObject())
+                    .toDouble();
+    qreal pres = ((itemObject.value("main").toObject())
                 .value("pressure"))
-                    .toInt();
-    qint32 humi = ((itemObject.value("main").toObject())
+                    .toDouble();
+    qreal humi = ((itemObject.value("main").toObject())
                 .value("humidity"))
-                    .toInt();
-    qint32 temp_max = ((itemObject.value("main").toObject())
+                    .toDouble();
+    qreal temp_max = ((itemObject.value("main").toObject())
                 .value("temp_max"))
-                    .toInt();
-    qint32 temp_min = ((itemObject.value("main").toObject())
+                    .toDouble();
+    qreal temp_min = ((itemObject.value("main").toObject())
                 .value("temp_min"))
-                    .toInt();
+                    .toDouble();
     qDebug()<<"Temperature:"<<temp<<", Pressure"<<pres<<", humidity:"<<humi<<", Max Temperature"<<temp_max<<", Min Tempreature"<<temp_min;
 
     //separating wind from the JSON Object
